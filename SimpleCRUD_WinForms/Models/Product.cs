@@ -1,6 +1,6 @@
 namespace SimpleCRUD_WinForms.Models;
 
-public struct Product
+public class Product
 {
     public int Id { get; init; }
     public string Code { get; init; }

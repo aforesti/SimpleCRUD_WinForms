@@ -1,8 +1,8 @@
 namespace SimpleCRUD_WinForms
 {
     using System.Data;
-    using System.Data.SqlClient;
     using Dapper;
+    using Microsoft.Data.SqlClient;
     using Microsoft.Extensions.Configuration;
     using SimpleCRUD_WinForms.Models;
 
@@ -15,8 +15,6 @@ namespace SimpleCRUD_WinForms
         {
             InitializeComponent();
             _connectionString = config.GetConnectionString("Default");
-            using var con = new SqlConnection(_connectionString);
-            RefreshData(con);
         }
 
         private void RefreshData(IDbConnection con)
@@ -26,7 +24,7 @@ namespace SimpleCRUD_WinForms
         }
 
 
-        private void InsertButton_Click(object sender, EventArgs e)
+        private void CreateButton_Click(object sender, EventArgs e)
         {
             var product = new Product
             {
@@ -76,6 +74,12 @@ namespace SimpleCRUD_WinForms
                 "delete Product where id = @id", 
                 new { id = _products[ProductList.CurrentRow.Index].Id }
             );
+            RefreshData(con);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            using var con = new SqlConnection(_connectionString);
             RefreshData(con);
         }
     }

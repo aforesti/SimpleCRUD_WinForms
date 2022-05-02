@@ -1,7 +1,6 @@
-namespace CRUD_Refactored;
+namespace SimpleCRUD_WinForms;
 
 using Microsoft.Extensions.Configuration;
-using SimpleCRUD_WinForms;
 
 internal static class Program
 {
